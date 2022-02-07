@@ -39,3 +39,17 @@ const people = [
     hobbies: ['basketball', 'piano'],
   },
 ];
+
+
+// Issiaiskinti ir pabandyti naudotis
+.find()
+.findOne()
+.insertOne()
+.insertMany()
+.updateOne()
+.deleteOne()
+
+// pabandyti kaip veikia (daugiu, maziau, lygy, nelygu)
+.find($gt, $lt, $eg, $ne)
+
+// https://docs.mongodb.com/manual/reference/mongo-shell/
