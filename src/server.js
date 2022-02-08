@@ -12,11 +12,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
-// people masyvas kuriame yra objektai su id, name, email, married
-// Sukuriam routes
-// GET /api/people (grazina zmones)
-// POST /api/people/new (irasom nauja zmogu i sarasa)
-// sukurti peopleConntroller
+
+// GET /api/todos (grazinam pries tai sukurtus todo elemenus)
+// sukuriam todoRoutes.js, todoContoller.js, isitraukiam routes i server.js
+// POST /api/todos/new (sukuriam nauja todo is gautu duomenu post metodu)
 
 // GET /api/users (grazina users is test db)
 // app.get('/api/users', async (req, res) => {});

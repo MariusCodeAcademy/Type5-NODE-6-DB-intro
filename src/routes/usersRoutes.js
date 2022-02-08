@@ -7,6 +7,14 @@ const usersController = require('../controllers/usersController');
 // routes
 router.get('/api/users', usersController.usersIndex);
 
+// GET /api/users/james (vartotojo objekta kurio vardas yra james)
+
+// GET /api/users/town/london (grazinam vartotojus is londono)
+
+// GET /api/users/age/gt33 (grazinam vartotojus kuriu amzius daugiau nei 33)
+
+// GET /api/users/age/:age (grazinam vartotojus kuriu amzius daugiau nei :age)
+
 router.post('/api/users/new', usersController.addUser);
 
 module.exports = router;
