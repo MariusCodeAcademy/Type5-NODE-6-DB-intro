@@ -28,7 +28,7 @@ app.get('/api/users', async (req, res) => {
   // 4 grazinam useriui duomenis
   res.json({
     success: true,
-    data: data,
+    data,
   });
 });
 
