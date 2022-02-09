@@ -1,5 +1,5 @@
 const dbClient = require('../db');
-const { successResponce } = require('../helpers/dbHelpers');
+const { successResponce, failResponce } = require('../helpers/dbHelpers');
 const userModel = require('../models/userModel');
 
 async function usersIndex(req, res) {
@@ -7,13 +7,16 @@ async function usersIndex(req, res) {
 
   if (allUsersDataFromDB) {
     successResponce(res, allUsersDataFromDB);
-  } else {
-    // failResponce()
-    res.status(500).json({
-      success: false,
-      error: 'something wrong',
-    });
+    return;
   }
+  failResponce(res);
+
+  // kitas budas pasiekti pan rezulata
+  // if (allUsersDataFromDB === false) {
+  //   failResponce(res);
+  //   return;
+  // }
+  // successResponce(res, allUsersDataFromDB);
 }
 
 async function addUser(req, res) {
