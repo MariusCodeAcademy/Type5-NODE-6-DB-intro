@@ -74,6 +74,18 @@ async function users35(req, res) {
   }
 }
 
+async function getUserTownString(req, res) {
+  // console.log('getUserById func ran ===');
+  const { townString } = req.params;
+  const townArrFromString = townString.split(',');
+  console.log('townArrFromString ===', townArrFromString);
+  const foundUserInDb = await userModel.getUsersInTowns(townArrFromString);
+  if (foundUserInDb === false) {
+    failResponce(res);
+    return;
+  }
+  successResponce(res, foundUserInDb);
+}
 async function getUserById(req, res) {
   // console.log('getUserById func ran ===');
   const { userId } = req.params;
@@ -91,4 +103,5 @@ module.exports = {
   addUser,
   users35,
   getUserById,
+  getUserTownString,
 };

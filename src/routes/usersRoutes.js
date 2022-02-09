@@ -12,6 +12,8 @@ router.get('/api/users/age/:age', usersController.users35);
 // GET /api/users/id/:userId (vartotojo objekta kurio _id === :userId)
 router.get('/api/users/id/:userId', usersController.getUserById);
 
+// GET /api/users/town/:townList (grazinam vartotojus is miestu parasytu townlist stringe)
+router.get('/api/users/town/:townString', usersController.getUserTownString);
 // GET /api/users/james (vartotojo objekta kurio vardas yra james)
 
 // GET /api/users/town/london (grazinam vartotojus is londono)
