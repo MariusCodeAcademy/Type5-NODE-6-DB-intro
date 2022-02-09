@@ -3,6 +3,11 @@
 GET http://localhost:3000/api/users
 
 ###
+
+GET http://localhost:3000/api/users/id/:userId
+
+###
+
 GET http://localhost:3000/api/users/age/40
 
 ###

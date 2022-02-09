@@ -74,8 +74,21 @@ async function users35(req, res) {
   }
 }
 
+async function getUserById(req, res) {
+  // console.log('getUserById func ran ===');
+  const { userId } = req.params;
+  const foundUserInDb = await userModel.getSingleUserFromDb(userId);
+
+  if (foundUserInDb === false) {
+    failResponce(res);
+    return;
+  }
+  successResponce(res, foundUserInDb);
+}
+
 module.exports = {
   usersIndex,
   addUser,
   users35,
+  getUserById,
 };
