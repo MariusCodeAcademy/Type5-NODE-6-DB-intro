@@ -1,15 +1,14 @@
 const dbClient = require('../db');
+const { successResponce } = require('../helpers/dbHelpers');
 const userModel = require('../models/userModel');
 
 async function usersIndex(req, res) {
   const allUsersDataFromDB = await userModel.getAllUserFromDb();
 
   if (allUsersDataFromDB) {
-    res.json({
-      success: true,
-      data: allUsersDataFromDB,
-    });
+    successResponce(res, allUsersDataFromDB);
   } else {
+    // failResponce()
     res.status(500).json({
       success: false,
       error: 'something wrong',
