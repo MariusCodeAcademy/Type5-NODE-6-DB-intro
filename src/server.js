@@ -20,6 +20,8 @@ app.use(express.json());
 // GET /api/users (grazina users is test db)
 // app.get('/api/users', async (req, res) => {});
 
+// Pabandyti iskelti DB logika i atskira models file
+
 const usersRoutes = require('./routes/usersRoutes');
 
 app.use('/', usersRoutes);

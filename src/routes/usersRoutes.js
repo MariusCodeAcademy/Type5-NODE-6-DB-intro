@@ -7,6 +7,8 @@ const usersController = require('../controllers/usersController');
 // routes
 router.get('/api/users', usersController.usersIndex);
 
+router.get('/api/users/age/:age', usersController.users35);
+
 // GET /api/users/james (vartotojo objekta kurio vardas yra james)
 
 // GET /api/users/town/london (grazinam vartotojus is londono)
