@@ -23,8 +23,10 @@ app.use(express.json());
 // Pabandyti iskelti DB logika i atskira models file
 
 const usersRoutes = require('./routes/usersRoutes');
+const booksRoutes = require('./routes/booksRoutes');
 
 app.use('/', usersRoutes);
+app.use('/', booksRoutes);
 
 // Launch app
 app.listen(PORT, console.log(`server online on port ${PORT}`));
