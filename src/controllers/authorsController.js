@@ -1,9 +1,14 @@
 const { ObjectId } = require('mongodb');
 const { successResponce, failResponce } = require('../helpers/dbHelpers');
-const { createAuthor } = require('../models/authorModel');
+const { createAuthor, getAllAuthorsFromDb } = require('../models/authorModel');
 
 async function authorsIndex(req, res) {
-  successResponce(res, 'hello from authorsIndex');
+  const allAuthors = await getAllAuthorsFromDb();
+  if (allAuthors === false) {
+    failResponce(res);
+    return;
+  }
+  successResponce(res, allAuthors);
 }
 async function addAuthor(req, res) {
   const { body } = req;

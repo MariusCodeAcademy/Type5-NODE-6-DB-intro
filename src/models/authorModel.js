@@ -16,7 +16,23 @@ async function createAuthor(newAuthorDataFromUser) {
 }
 
 // getAllAuthors authorModel
+async function getAllAuthorsFromDb() {
+  try {
+    await dbClient.connect();
+    const dataFromDb = await dbClient
+      .db('library')
+      .collection('authors')
+      .find()
+      .toArray();
+    await dbClient.close();
+    return dataFromDb;
+  } catch (error) {
+    console.warn('getAllAuthorsFromDb function error', error);
+    return false;
+  }
+}
 
 module.exports = {
   createAuthor,
+  getAllAuthorsFromDb,
 };
