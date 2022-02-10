@@ -24,9 +24,12 @@ app.use(express.json());
 
 const usersRoutes = require('./routes/usersRoutes');
 const booksRoutes = require('./routes/booksRoutes');
+const authorsRoutes = require('./routes/authorsRoutes');
 
 app.use('/', usersRoutes);
 app.use('/', booksRoutes);
+// pilnas kelias gaunasi /api/authors + kas yra authorsRoutes
+app.use('/api/authors', authorsRoutes);
 
 // Launch app
 app.listen(PORT, console.log(`server online on port ${PORT}`));
