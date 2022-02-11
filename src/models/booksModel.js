@@ -42,7 +42,30 @@ async function getAllBooksBb() {
   }
 }
 
+async function findBookAndSetId(bookId, authorId) {
+  try {
+    if (!bookId || !authorId) throw new Error('bookId, authorId nepaduoti');
+    await dbClient.connect();
+    const filter = { _id: ObjectId(bookId) };
+    const updateDoc = { $set: { author: ObjectId(authorId) } };
+    // jei nera tokios property jis sukuria
+    const options = { upsert: true };
+    const updateResult = await dbClient
+      .db('library')
+      .collection('books')
+      .updateOne(filter, updateDoc, options);
+
+    await dbClient.close();
+
+    return updateResult;
+  } catch (error) {
+    console.warn('getAllBooksBb function error', error);
+    return false;
+  }
+}
+
 module.exports = {
   getAllBookInfoFromDb,
   getAllBooksBb,
+  findBookAndSetId,
 };

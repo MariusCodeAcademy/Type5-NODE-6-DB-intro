@@ -3,6 +3,14 @@
 GET http://localhost:3000/api/books
 ###
 
+PATCH  http://localhost:3000/api/books/set-author-id/62066cb1e9a64e56c84adf32
+Content-Type: application/json
+
+{
+  "authorId": "62051961260226268ac25832"
+}
+###
+
 GET http://localhost:3000/api/books/single/620520bd2248e3bf00baad69
 
 ###
