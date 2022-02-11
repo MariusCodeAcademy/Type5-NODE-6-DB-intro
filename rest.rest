@@ -19,11 +19,16 @@ Content-Type: application/json
 GET http://localhost:3000/api/authors
 ###
 
+DELETE  http://localhost:3000/api/authors/6206576d171ccdd128848f48
+
+###
+
 POST http://localhost:3000/api/authors/add
 Content-Type: application/json
 
 {
-  "name": "James"
+  "name": "James",
+  "country": "Latvia"
 }
 
 ###

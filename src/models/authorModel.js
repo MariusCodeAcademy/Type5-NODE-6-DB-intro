@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const dbClient = require('../db');
 
 async function createAuthor(newAuthorDataFromUser) {
@@ -32,7 +33,23 @@ async function getAllAuthorsFromDb() {
   }
 }
 
+async function deleteSingleAuthorFromDb(authorId) {
+  try {
+    await dbClient.connect();
+    const deleteResult = await dbClient
+      .db('library')
+      .collection('authors')
+      .deleteOne({ _id: ObjectId(authorId) });
+    await dbClient.close();
+    return deleteResult;
+  } catch (error) {
+    console.warn('error in deleteSingleAuthorFromDb', error);
+    return false;
+  }
+}
+
 module.exports = {
   createAuthor,
   getAllAuthorsFromDb,
+  deleteSingleAuthorFromDb,
 };
