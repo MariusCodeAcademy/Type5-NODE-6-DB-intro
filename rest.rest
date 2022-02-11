@@ -3,6 +3,10 @@
 GET http://localhost:3000/api/books
 ###
 
+GET http://localhost:3000/api/books/single/620520bd2248e3bf00baad69
+
+###
+
 POST http://localhost:3000/api/books/add
 Content-Type: application/json
 

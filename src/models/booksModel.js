@@ -1,79 +1,30 @@
-const books = [
-  {
-    title: 'book1',
-    year: 2000,
-    rating: 3,
-    author: ObjectId('62051961260226268ac25832'),
-  },
-  {
-    title: 'book2',
-    year: 2001,
-    rating: 2,
-    author: ObjectId('62051940248e75b94a7d5ba2'),
-  },
-  {
-    title: 'book3',
-    year: 2002,
-    rating: 3,
-    author: ObjectId('62051961260226268ac25832'),
-  },
-  {
-    title: 'book4',
-    year: 2015,
-    rating: 2,
-    author: ObjectId('620518a64e17a074b386d8a2'),
-  },
-  {
-    title: 'book5',
-    year: 2020,
-    rating: 3,
-    author: ObjectId('620518a64e17a074b386d8a2'),
-  },
-  {
-    title: 'book6',
-    year: 2011,
-    rating: 1,
-    author: ObjectId('620518a64e17a074b386d8a2'),
-  },
-];
+const { ObjectId } = require('mongodb');
+const dbClient = require('../db');
 
-// id naudosim tuos kuriuos gausim is DB sukure autorius
+async function getAllBookInfoFromDb(bookId) {
+  try {
+    await dbClient.connect();
+    const foundBook = await dbClient
+      .db('library')
+      .collection('books')
+      .findOne(ObjectId(bookId));
 
-db.books.insertMany([
-  {
-    title: 'book1',
-    year: 2000,
-    rating: 3,
-    author: ObjectId('62051961260226268ac25832'),
-  },
-  {
-    title: 'book2',
-    year: 2001,
-    rating: 2,
-    author: ObjectId('62051940248e75b94a7d5ba2'),
-  },
-  {
-    title: 'book3',
-    year: 2002,
-    rating: 3,
-    author: ObjectId('62051961260226268ac25832'),
-  },
-  {
-    title: 'book4',
-    year: 2015,
-    rating: 2,
-    author: ObjectId('620518a64e17a074b386d8a2'),
-  },
-  {
-    title: 'book5',
-    year: 2020,
-    rating: 3,
-    author: ObjectId('620518a64e17a074b386d8a2'),
-  },
-  {
-    title: 'book6',
-    year: 2011,
-    rating: 1,
-    author: ObjectId('620518a64e17a074b386d8a2'),
-  },
-]);
+    const authorObj = await dbClient
+      .db('library')
+      .collection('authors')
+      .findOne(ObjectId(foundBook.author));
+    // console.log('foundBook b4 ===', foundBook);
+    foundBook.authorName = authorObj.name;
+    // console.log('foundBook af ===', foundBook);
+
+    await dbClient.close();
+    return foundBook;
+  } catch (error) {
+    console.warn('getAllAuthorsFromDb function error', error);
+    return false;
+  }
+}
+
+module.exports = {
+  getAllBookInfoFromDb,
+};
