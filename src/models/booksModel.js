@@ -34,6 +34,7 @@ async function getAllBooksBb() {
       .find()
       .toArray();
     await dbClient.close();
+
     return allBooks;
   } catch (error) {
     console.warn('getAllBooksBb function error', error);
