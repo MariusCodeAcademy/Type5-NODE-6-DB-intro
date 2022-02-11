@@ -25,6 +25,23 @@ async function getAllBookInfoFromDb(bookId) {
   }
 }
 
+async function getAllBooksBb() {
+  try {
+    await dbClient.connect();
+    const allBooks = await dbClient
+      .db('library')
+      .collection('books')
+      .find()
+      .toArray();
+    await dbClient.close();
+    return allBooks;
+  } catch (error) {
+    console.warn('getAllBooksBb function error', error);
+    return false;
+  }
+}
+
 module.exports = {
   getAllBookInfoFromDb,
+  getAllBooksBb,
 };

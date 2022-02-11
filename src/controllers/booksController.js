@@ -1,8 +1,12 @@
 const { successResponce, failResponce } = require('../helpers/dbHelpers');
-const { getAllBookInfoFromDb } = require('../models/booksModel');
+const { getAllBookInfoFromDb, getAllBooksBb } = require('../models/booksModel');
 
 async function booksIndex(req, res) {
-  successResponce(res, 'hello from booksIndex');
+  const allBooks = await getAllBooksBb();
+
+  if (allBooks === false) return failResponce();
+
+  return successResponce(res, allBooks);
 }
 async function allBookInfo(req, res) {
   const { bookId } = req.params;
